@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 void main() {
-  runApp(myApp());
+  runApp(MyApp());
 }
-class myApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,12 +30,23 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         backgroundColor: Colors.black,
-
       ),
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
+          children:[
+            Container(
+              child: Text(
+                wynik,
+                style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black),
+              ),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blueAccent)
+              ),
+            ),
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(bottom: 10.0),
@@ -48,46 +59,52 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w500,
                       color: Colors.black),
                 ),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blueAccent)
+                ),
               ),
             ),
             Row(
               children: <Widget>[
-                Button(""),
-                Button("%"),
-                Button("C"),
-                Button("AC"),
+                TextButton(onPressed: ()=> btnClicked(""), child: Text(""), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('%'), child: Text("%"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('C'), child: Text("C"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('AC'), child: Text("AC"), style: TextButton.styleFrom(),),
               ],
             ),
             Row(
               children: <Widget>[
-                Button("7"),
-                Button("8"),
-                Button("9"),
-                Button("÷"),
+                TextButton(onPressed: ()=> btnClicked('7'), child: Text("7"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('8'), child: Text("8"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('9'), child: Text("9"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('÷'), child: Text("÷"), style: TextButton.styleFrom(),),
               ],
             ),
             Row(
               children: <Widget>[
-                Button("4"),
-                Button("5"),
-                Button("6"),
-                Button("x"),
+                TextButton(onPressed: ()=> btnClicked('4'), child: Text("4"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('5'), child: Text("5"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('6'), child: Text("6"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('x'), child: Text("x"), style: TextButton.styleFrom(),),
+
               ],
             ),
             Row(
               children: <Widget>[
-                Button("1"),
-                Button("2"),
-                Button("3"),
-                Button("-"),
+                TextButton(onPressed: ()=> btnClicked('3'), child: Text("3"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('2'), child: Text("2"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('1'), child: Text("1"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('-'), child: Text("-"), style: TextButton.styleFrom(),),
+
               ],
             ),
             Row(
               children: <Widget>[
-                Button("0"),
-                Button("."),
-                Button("="),
-                Button("+"),
+                TextButton(onPressed: ()=> btnClicked('0'), child: Text("0"), style: TextButton.styleFrom(),),
+                TextButton(onPressed: ()=> btnClicked('.'), child: Text("."), style: TextButton.styleFrom(fixedSize: Size(200, 100)),),
+                TextButton(onPressed: ()=> btnClicked('='), child: Text("="), style: TextButton.styleFrom(backgroundColor: Colors.cyan, foregroundColor: Colors.white),),
+                TextButton(onPressed: ()=> btnClicked('+'), child: Text("+"), style: TextButton.styleFrom(padding: EdgeInsets.symmetric(vertical: 10),),),
+
               ],
             ),
           ],
@@ -95,66 +112,59 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  Widget Button(String value) {
-    return Expanded(
-      child: OutlinedButton(
 
-        onPressed: () => btnClicked(value),
-        child: Text(
-          value,
-          style: TextStyle(fontSize: 35.0, color: Colors.black),
-        ),
-      ),
-    );
-  }
-  double num1 = 0;
-  double num2 = 0;
-  String res = "";
-  String text = "";
-  String opp = "";
+  String text = "", wynik = "", opp = "";
+  double a = 0, b = 0;
   void btnClicked(String btnText) {
-    if (btnText == "AC") {
-      res = "";
+    if(btnText == "C"){
+      text = text.substring(0, text.length - 1);
+      wynik = wynik.substring(0, wynik.length - 1);
+    }
+    else if(btnText == "AC"){
       text = "";
-      num1 = 0;
-      num2 = 0;
-    }
-    else if(btnText == "C"){
-      res = res.substring(0, res.length - 1);
-    }
-    else if (btnText == "+" || btnText == "-" || btnText == "x" || btnText == "÷" || btnText == "%") {
-      num1 = double.parse(text);
-      res = "";
-      opp = btnText;
-    }
-    else if (btnText == "=") {
-      num2 = double.parse(text);
-      if (opp == "+") {
-        res = (num1 + num2).toString();
-      }
-      else if (opp == "-") {
-        res = (num1 - num2).toString();
-      }
-      else if (opp == "x") {
-        res = (num1 * num2).toString();
-      }
-      else if (opp == "÷") {
-        res = (num1 / num2).toString();
-      }
-      else if (opp == "%") {
-        //res = double.parse(res / 100).toString();
-      }
+      wynik = "";
+      opp = "";
+      a = 0;
+      b = 0;
     }
     else if(btnText == "."){
-      if(!res.contains(".")){
-        res = res + ".";
+      if(!text.contains(".")){
+        text += ".";
       }
     }
-    else {
-      res = text + btnText;
+    else if(btnText == "+" || btnText == "-" || btnText == "x" || btnText == "÷" || btnText == "%"){
+        opp = btnText;
+        wynik += btnText;
+        a = double.parse(text);
+        text = "";
+    }
+    else if(btnText == "="){
+      wynik += "=";
+      b = double.parse(text);
+      if (opp == "+") {
+        text = (a + b).toString();
+      }
+      else if (opp == "-") {
+        text = (a - b).toString();
+      }
+      else if (opp == "x") {
+        text = (a * b).toString();
+      }
+      else if (opp == "÷") {
+        text = (a / b).toString();
+      }
+      else if (opp == "%") {
+        text = (a % b).toString();
+      }
+      opp = "";
+    }
+    else{
+      text = text + btnText;
+      wynik += btnText;
     }
     setState(() {
-      text = res;
+      text = text;
+
     });
   }
 }
