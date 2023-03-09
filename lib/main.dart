@@ -27,39 +27,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Kalkulator",
-          style: TextStyle(
-            color: Colors.white,
-          ),
+      title: const Text(
+      "Kalkulator",
+        style: TextStyle(
+          color: Colors.white,
+
         ),
-        backgroundColor: Colors.black,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+      centerTitle: true,
+      backgroundColor: Color.fromARGB(255, 26, 26, 26),
+    ),
+    body: Column(
+    mainAxisAlignment: MainAxisAlignment.end,
         children:[
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                color: Colors.black,
-            ),
-            child: Text(
-              wynik,
-              style: const TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
-            ),
-          ),
           Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10.0),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(10.0),
+                alignment: Alignment.bottomRight,
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 26, 26, 26),
+                ),
+                child: Text(
+                  wynik,
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+              ),
+          ),
+          Container(
               padding: const EdgeInsets.all(10.0),
               alignment: Alignment.bottomRight,
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blueAccent),
-                  color: Colors.black,
+                  color: Color.fromARGB(255, 26, 26, 26),
               ),
               child: Text(
                 text,
@@ -69,59 +71,61 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white),
               ),
             ),
-          ),
-          Column(
-            children: [
-              Row(
-                children: <Widget>[
-                  buildTextButton("x²", kSign, kFontBlack),
-                  buildTextButton("%", kSign, kFontBlack),
-                  buildTextButton("C", kDelete, kFontWhite),
-                  buildTextButton("AC", kDelete, kFontWhite),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  buildTextButton("7", kNum, kFontBlack),
-                  buildTextButton("8", kNum, kFontBlack),
-                  buildTextButton("9", kNum, kFontBlack),
-                  buildTextButton("÷", kSign, kFontBlack),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  buildTextButton("4", kNum, kFontBlack),
-                  buildTextButton("5", kNum, kFontBlack),
-                  buildTextButton("6", kNum, kFontBlack),
-                  buildTextButton("x", kSign, kFontBlack),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  buildTextButton("3", kNum, kFontBlack),
-                  buildTextButton("2", kNum, kFontBlack),
-                  buildTextButton("1", kNum, kFontBlack),
-                  buildTextButton("-", kSign, kFontBlack),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  buildTextButton(".", kSign, kFontBlack),
-                  buildTextButton("0", kNum, kFontBlack),
-                  buildTextButton("=", kEquals, kFontWhite),
-                  buildTextButton("+", kSign, kFontBlack),
-                ],
-              ),
-            ],
-          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            color: Color.fromARGB(255, 26, 26, 26),
+            child: Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    buildTextButton("x²", kSign, kFontWhite),
+                    buildTextButton("%", kSign, kFontWhite),
+                    buildTextButton("C", kSign, kFontWhite),
+                    buildTextButton("AC", kSign, kFontWhite),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildTextButton("7", kNum, kFontWhite),
+                    buildTextButton("8", kNum, kFontWhite),
+                    buildTextButton("9", kNum, kFontWhite),
+                    buildTextButton("÷", kSign, kFontWhite),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildTextButton("4", kNum, kFontWhite),
+                    buildTextButton("5", kNum, kFontWhite),
+                    buildTextButton("6", kNum, kFontWhite),
+                    buildTextButton("x", kSign, kFontWhite),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildTextButton("3", kNum, kFontWhite),
+                    buildTextButton("2", kNum, kFontWhite),
+                    buildTextButton("1", kNum, kFontWhite),
+                    buildTextButton("-", kSign, kFontWhite),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    buildTextButton(".", kSign, kFontWhite),
+                    buildTextButton("0", kNum, kFontWhite),
+                    buildTextButton("=", kEquals, kFontBlack),
+                    buildTextButton("+", kSign, kFontWhite),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
-  Color kNum =  const Color(0x0fffff3b0);
-  Color kSign = const Color(0x0ffe09f3e);
-  Color kDelete = const Color(0xff9e2a2b);
-  Color kEquals = const Color(0x0ff540b0e);
+  Color kNum =  const Color(0x0ff4d4d4d);
+  Color kSign = const Color(0x0ff333333);
+  Color kEquals = const Color(0x0ff1a8cff);
   Color kFontWhite = const Color(0x0ffffffff);
   Color kFontBlack = const Color(0x0ff000000);
 
@@ -129,7 +133,7 @@ class _HomePageState extends State<HomePage> {
     padding: const EdgeInsets.all(1.0),
     child: TextButton(onPressed: ()=> btnClicked(value),
       style: TextButton.styleFrom(
-          fixedSize: const Size(105, 50),
+          fixedSize: const Size(100, 75),
           backgroundColor: color,
           ),
       child:  Text(
@@ -160,6 +164,7 @@ class _HomePageState extends State<HomePage> {
     else if(btnText == "."){
       if(!text.contains(".")){
         text += ".";
+        wynik += ".";
       }
     }
     else if(btnText == "%"){
