@@ -130,10 +130,15 @@ class _HomePageState extends State<HomePage> {
   Color kFontBlack = const Color(0x0ff000000);
 
   Widget buildTextButton(String value, Color color, Color font) => Padding(
-    padding: const EdgeInsets.all(1.0),
+    padding: EdgeInsets.all(
+        MediaQuery.of(context).size.width * 0.005,
+    ),
     child: TextButton(onPressed: ()=> btnClicked(value),
       style: TextButton.styleFrom(
-          fixedSize: const Size(100, 75),
+          fixedSize: Size(
+            MediaQuery.of(context).size.width * 0.24,
+            MediaQuery.of(context).size.height * 0.08,
+          ),
           backgroundColor: color,
           ),
       child:  Text(
